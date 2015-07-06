@@ -11,7 +11,7 @@
 	var VIEW_ANGLE = 45,
 		ASPECT = WIDTH / HEIGHT,
 	  	NEAR = 0.1,
-	  	FAR = 1000,
+	  	FAR = 10000,
 	  	canvas = document.createElement('canvas'),
 	  	context = canvas.getContext('2d'),
 	  	img = new Image(),
@@ -93,7 +93,7 @@
 			    {
 			    	var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
 			    	var color 		= new THREE.Color(pixelCol);
-			    	var vector 		= new THREE.Vector3(-300 + x/4, 240 - y, 0);
+			    	var vector 		= new THREE.Vector3(-img.width/2 + x/4, 240 - y, 0);
 			    	
 			    	// push on the particle
 			    	particles.vertices.push(vector);
@@ -118,15 +118,17 @@
 	    //   particles.vertices.push(particle);
 	    // }
 
-	    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+	    var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 	    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 	    var cube = new THREE.Mesh( geometry, material );
-	    scene.add( cube );
+	    //scene.add( cube );
+	    cube.position.z = 100;
 
 	    // create the particle system
 	    var particleSystem = new THREE.PointCloud(
 	        particles,
 	        pMaterial);
+	    particleSystem.sortParticles = true;
 
 	    // also update the particle system to
 		// sort the particles which enables
@@ -146,10 +148,10 @@
 
 		// draw!
 		function render(){
-			var timer = Date.now() * 0.0002;
+			var timer = Date.now() * 0.001;
 
-		  	//camera.position.x = Math.cos( timer ) * 1500;
-		  	//camera.position.z = Math.sin( timer ) * 1500;
+		  	camera.position.x = Math.cos( timer ) * 1000;
+		  	camera.position.z = Math.sin( timer ) * 1000;
 
 			camera.lookAt(scene.position);
 		  	
