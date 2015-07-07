@@ -149,15 +149,22 @@ ParticleSystem.prototype.loadImage = function(image){
 	return new Promise(function(resolve, reject){
 
 		that.img.src = that.pathImg + image;
+		console.log(that.img.complete);
 
 		that.img.onload = function(){
 
-			that.canvas.width = that.img.width;
-		  	that.canvas.height = that.img.height;
+			if (that.img.complete) {
 
-			that.context.drawImage(that.img,0,0,that.img.width,that.img.height);
+				that.canvas.width = that.img.width;
+			  	that.canvas.height = that.img.height;
 
-			resolve('Image loaded !');
+				that.context.drawImage(that.img,0,0,that.img.width,that.img.height);
+
+				resolve('Image loaded !');
+
+			} else {
+				reject(Error('Image not loaded :( !'));
+			}
 
 		};
 
