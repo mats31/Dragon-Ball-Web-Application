@@ -1,8 +1,21 @@
-<div id="container"></div>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dragon Ball Web Application</title>
+</head>
+<body>
+	<div id="container"></div>
+	<div class="presentation">
+		<h1>Dragon Ball Web Application</h1>
+		<a href="javascript:void(0)" class="button">Start</a>
+	</div>
 
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
-<script type="text/javascript">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
+	<script type="text/javascript">
 	// set the scene size
 	var WIDTH = window.innerWidth,
 	  	HEIGHT = window.innerHeight;
@@ -15,10 +28,7 @@
 	  	canvas = document.createElement('canvas'),
 	  	context = canvas.getContext('2d'),
 	  	img = new Image(),
-	  	DENSITY			= 3,
-	  	orbitValue = 0,
-	  	ORBIT_RATE		= 0.01,
-	  	DEPTH			= Math.max(WIDTH, HEIGHT);
+	  	DENSITY			= 3;
 
 	  	img.src = 'giphy.gif';
 
@@ -93,7 +103,7 @@
 			    {
 			    	var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
 			    	var color 		= new THREE.Color(pixelCol);
-			    	var vector 		= new THREE.Vector3(-img.width/2 + x/4, 240 - y, 0);
+			    	var vector 		= new THREE.Vector3(-img.width/2 + x/4, 240 - y, Math.floor(Math.random() * 50));
 			    	
 			    	// push on the particle
 			    	particles.vertices.push(vector);
@@ -164,4 +174,6 @@
 
 
 
-</script>
+	</script>
+</body>
+</html>
