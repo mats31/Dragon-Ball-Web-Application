@@ -15,9 +15,15 @@ var ParticleSystem = function(){
 	this.near = 0.1;
 	this.view_angle = 45;
 
-	// hidden canvas attributes
+	// Hidden canvas attributes
 	this.canvas;
 	this.context;
+
+	// Particles attributes
+	this.particles;
+	this.particleSystem;
+	this.particleTexture;
+	this.pMaterial;
 
 	// Image attributes
 	this.img = new Image();
@@ -87,10 +93,10 @@ ParticleSystem.prototype.appendRenderer = function(){
 
 	this.container.appendChild(this.renderer.domElement);
 
-	var particles = new THREE.Geometry(),
-		particleTexture = THREE.ImageUtils.loadTexture(this.pathImg + "particle.png");
+	this.particles = new THREE.Geometry();
+	this.particleTexture = THREE.ImageUtils.loadTexture(this.pathImg + "particle.png");
 
-	var pMaterial = new THREE.PointCloudMaterial({
+	this.pMaterial = new THREE.PointCloudMaterial({
 		blending: THREE.AdditiveBlending,
 		map: particleTexture,
 		size: this.density * 1.5,
@@ -119,24 +125,24 @@ ParticleSystem.prototype.appendRenderer = function(){
 		    	var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, 240 - y, Math.floor(Math.random() * 0));
 		    	
 		    	// push on the particle
-		    	particles.vertices.push(vector);
-		    	particles.colors.push(color);
+		    	this.particles.vertices.push(vector);
+		    	this.particles.colors.push(color);
 		    }
     	}
     }
 
     // create the particle system
-    var particleSystem = new THREE.PointCloud(
-        particles,
-        pMaterial);
+    this.particleSystem = new THREE.PointCloud(
+        this.particles,
+        this.pMaterial);
 
     // also update the particle system to
 	// sort the particles which enables
 	// the behaviour we want
-	particleSystem.sortParticles = true;
+	this.particleSystem.sortParticles = true;
 
     // add it to the scene
-    this.scene.add(particleSystem);
+    this.scene.add(this.particleSystem);
 
     this.update();
 
@@ -149,7 +155,6 @@ ParticleSystem.prototype.loadImage = function(image){
 	return new Promise(function(resolve, reject){
 
 		that.img.src = that.pathImg + image;
-		console.log(that.img.complete);
 
 		that.img.onload = function(){
 
