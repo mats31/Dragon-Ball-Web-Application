@@ -147,7 +147,7 @@ ParticleSystem.prototype.appendRenderer = function(){
 
 
     // add it to the scene
-    this.scene.add(this.particleSystem);
+   this.scene.add(this.particleSystem);
 
     this.setRotationToCenter();
 
@@ -199,9 +199,20 @@ ParticleSystem.prototype.setRotationToCenter = function(){
 	    // 	y = this.particleSystem.geometry.center().y,
 	    // 	z = this.particleSystem.geometry.center().z;
 
-	    geometry.applyMatrix(new THREE.Matrix4().makeTranslation( this.img.width, 0, 0 ) );
+	    // geometry.applyMatrix(new THREE.Matrix4().makeTranslation( this.img.width, 0, 0 ) );
 
 		// console.log(this.particleSystem.geometry.center());
+
+	// this.pivot = new THREE.Object3D();
+	// this.pivot.add(this.particleSystem);
+	// this.scene.add(this.pivot);
+	console.log(this.particleSystem);
+	console.log(this.particles);
+	this.particleSystem.position.set(-400, 200, 0);
+	console.log(this.particleSystem.position);
+	//dummy.add(this.particleSystem);
+	//console.
+	//this.scene.add(dummy);
 
 }
 
