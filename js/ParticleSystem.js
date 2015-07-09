@@ -30,6 +30,9 @@ var ParticleSystem = function(){
 	this.img = new Image();
 	this.pathImg = 'img/';
 
+	//tests
+	this.cube;
+
 };
 
 ParticleSystem.prototype.init = function(){
@@ -94,8 +97,10 @@ ParticleSystem.prototype.appendRenderer = function(){
 
 	this.container.appendChild(this.renderer.domElement);
 
-	this.particles = new THREE.Geometry();
+	this.particles = new THREE.BoxGeometry( 1, 1, 1 );
 	this.particleTexture = THREE.ImageUtils.loadTexture(this.pathImg + "particle.png");
+
+	console.log(this.particles);
 
 	this.pMaterial = new THREE.PointCloudMaterial({
 		blending: THREE.AdditiveBlending,
@@ -123,7 +128,7 @@ ParticleSystem.prototype.appendRenderer = function(){
 		    {
 		    	var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
 		    	var color 		= new THREE.Color(pixelCol);
-		    	var vector 		= new THREE.Vector3(-this.width/2 + x/4, 240 - y, Math.floor(Math.random() * 0));
+		    	var vector 		= new THREE.Vector3(-x/4, -y, 0);
 		    	
 		    	// push on the particle
 		    	this.particles.vertices.push(vector);
@@ -147,11 +152,29 @@ ParticleSystem.prototype.appendRenderer = function(){
 
 
     // add it to the scene
-   this.scene.add(this.particleSystem);
+   //this.scene.add(this.particleSystem);
 
-    this.setRotationToCenter();
+   var geometry = new THREE.BoxGeometry( 100, 100, 100 );
+   var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+   this.cube = new THREE.Mesh( geometry, material );
+   this.scene.add( this.cube );
+
+   this.pivot = new THREE.Object3D();
+   this.pivot.add(this.particleSystem);
+   this.particleSystem.position.set(0,0,0);
+
+   this.scene.add(this.pivot);
+   this.pivot.position.set(-500,200,0);
+
+   this.cube.position.set(500, 200, 0);
+   //this.particleSystem.position.set(-500,200,0);
+
+   //this.setRotationToCenter();
 
     this.update();
+
+    console.log(this.cube);
+    console.log(this.particleSystem);
 
 };
 
@@ -232,8 +255,10 @@ ParticleSystem.prototype.render = function render(){
   	// 			this.particleSystem.rotation.y = 0.02 * time;
   	// 			this.particleSystem.rotation.z = 0.02 * time;
 
-  	this.particleSystem.rotation.y += 0.015;
+  	this.pivot.rotation.y += 0.015;
   	//this.particleSystem.rotation.z += 0.015;
+  	//
+  	this.cube.rotation.y += 0.015;
 
 	this.camera.lookAt(this.scene.position);
   	
