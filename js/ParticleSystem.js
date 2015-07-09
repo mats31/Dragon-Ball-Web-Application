@@ -143,41 +143,25 @@ ParticleSystem.prototype.appendRenderer = function(){
     this.particleSystem = new THREE.PointCloud(
         this.particles,
         this.pMaterial);
-    //this.particleSystem.x = -this.width/2
 
     // also update the particle system to
 	// sort the particles which enables
 	// the behaviour we want
 	this.particleSystem.sortParticles = true;
-	//this.particleSystem.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( this.img.width, 0, 0 ) );
 
 
 
     // add it to the scene
-   //this.scene.add(this.particleSystem);
+    this.particleSystem.position.set(0,0,0);
+    this.scene.add(this.particleSystem);
 
    var geometry = new THREE.BoxGeometry( 100, 100, 100 );
    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
    this.cube = new THREE.Mesh( geometry, material );
    this.scene.add( this.cube );
-
-   //this.pivot = new THREE.Object3D();
-   //this.pivot.add(this.particleSystem);
-   this.particleSystem.position.set(0,0,0);
-
-   this.scene.add(this.particleSystem);
-   //this.pivot.position.set(-500,200,0);
-
    this.cube.position.set(500, 200, 0);
-   //this.particleSystem.position.set(-500,200,0);
-
-   //this.setRotationToCenter();
 
     this.update();
-
-    console.log(this.cube);
-    console.log(this.particleSystem);
-
 };
 
 ParticleSystem.prototype.loadImage = function(image){
@@ -209,60 +193,15 @@ ParticleSystem.prototype.loadImage = function(image){
 
 };
 
-ParticleSystem.prototype.setRotationToCenter = function(){
-
-	// var box = new THREE.Box3().setFromObject( this.particleSystem );
-	// console.log(this.particleSystem.position);
-	// box.center(this.particleSystem.position);
-	// this.particleSystem.position.multiplyScalar(-1);
-
-	// this.pivot = new THREE.Group();
-	// this.scene.add(this.pivot);
-	// this.pivot.add(this.particleSystem);
-
-	    // var x = this.particleSystem.geometry.center().x,
-	    // 	y = this.particleSystem.geometry.center().y,
-	    // 	z = this.particleSystem.geometry.center().z;
-
-	    // geometry.applyMatrix(new THREE.Matrix4().makeTranslation( this.img.width, 0, 0 ) );
-
-		// console.log(this.particleSystem.geometry.center());
-
-	// this.pivot = new THREE.Object3D();
-	// this.pivot.add(this.particleSystem);
-	// this.scene.add(this.pivot);
-	console.log(this.particleSystem);
-	console.log(this.particles);
-	this.particleSystem.position.set(-400, 200, 0);
-	console.log(this.particleSystem.position);
-	//dummy.add(this.particleSystem);
-	//console.
-	//this.scene.add(dummy);
-
-}
-
 ParticleSystem.prototype.update = function(){
 	requestAnimationFrame(this.update.bind(this));
 	this.render();
 };
 
 ParticleSystem.prototype.render = function render(){
-	//var timer = Date.now() * 0.0004;
-
-  	//this.camera.position.x = Math.cos( timer ) * 1000;
-  	//this.camera.position.z = Math.sin( timer ) * 1000;
-
-  //	var time = Date.now() * 0.005;
-
-  	// 			this.particleSystem.rotation.y = 0.02 * time;
-  	// 			this.particleSystem.rotation.z = 0.02 * time;
 
   	this.particleSystem.rotation.y += 0.015;
-  	//this.particleSystem.rotation.z += 0.015;
-  	//
   	this.cube.rotation.y += 0.015;
-
-	//this.camera.lookAt(this.scene.position);
   	
 	this.renderer.render(this.scene, this.camera);
 };
