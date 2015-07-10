@@ -71,7 +71,7 @@ ParticleSystem.prototype.init = function(){
 	this.scene.add(this.camera);
 
 	// Set z position for camera
-	this.camera.position.x = 500;
+	this.camera.position.x = 300;
 	this.camera.position.y = -300;
 	this.camera.position.z = 1000;
 
@@ -196,6 +196,11 @@ ParticleSystem.prototype.updateParticles = function(){
 		y = 0,
 		i = 0;
 
+	for (var j = 0; j < this.particles.vertices.length; j++) {
+		
+		this.particles.colors[j] = new THREE.Color('black');
+	};
+
 	for(x = 0; x < this.img.width * 4; x+= step) {
 
     	for(y = this.img.height; y >= 0 ; y -= this.density) {
@@ -204,20 +209,18 @@ ParticleSystem.prototype.updateParticles = function(){
     		
     		// Grab the actual data from the
     		// pixel, ignoring any transparent ones
-    		var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
-    		var color 		= new THREE.Color(pixelCol);
-    		var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
-    		
-    		// push on the particle
-    		if(i <= this.particles.vertices.length){
-    			this.particles.vertices[i] = vector;
-    			this.particles.colors[i]  = color;
-    		} else {
-    			this.particles.vertices.push(vector);
-    			this.particles.colors.push(color);
-    		}
+    		if(pixels.data[p+3] > 0)
+		    {
+		    	var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
+		    	var color 		= new THREE.Color(pixelCol);
+		    	var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
+		    	
+		    	// push on the particle
+		    	this.particles.vertices[i] = vector;
+		    	this.particles.colors[i] = color;
 
-		   	i++;
+		    	i++;
+		    }
     	}
     }
 };
