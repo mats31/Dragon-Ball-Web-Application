@@ -1,66 +1,66 @@
-[
-	{
-		"character": [
-			{
-				"id": 0,
-				"name": "Son Goku",
-				"subtitle": "Première apparition",
-				"ki": 10
-			},
-			{
-				"id": 1,
-				"name": "Kame Sennin",
-				"subtitle": "(Jackie Chun)",
-				"ki": 139
-			},
-			{
-				"id": 2,
-				"name": "Maître des Grues",
-				"subtitle": "22ème championnat des arts martiaux",
-				"ki": 120
-			},
-			{
-				"id": 3,
-				"name": "Ten Shin Han",
-				"subtitle": "22ème championnat des arts martiaux",
-				"ki": 180
-			},
-			{
-				"id": 4,
-				"name": "Son Goku",
-				"subtitle": "22ème championnat des arts martiaux",
-				"ki": 180
-			},
-			{
-				"id": 5,
-				"name": "Krilin",
-				"subtitle": "Après l'arrivée de Raditz sur Terre",
-				"ki": 206
-			},
-			{
-				"id": 6,
-				"name": "Piccolo Daimaô",
-				"subtitle": "Première apparition",
-				"ki": 260
-			},
-			{
-				"id": 7,
-				"name": "Son Goku",
-				"subtitle": "Lors du combat contre Piccolo Daimaô",
-				"ki": 260
-			},
-			{
-				"id": 8,
-				"name": "Piccolo",
-				"subtitle": "Lors du combat contre Radditz",
-				"ki": 408
-			},
-			{
-				"id": 9,
-				"name": "Son Goku",
-				"subtitle": "Lors du combat contre Radditz",
-				"ki": 416
-			}
-		]
-	}
-]
+{
+	"characters": [
+		{
+			"id": 0,
+			"name": "Son Goku",
+			"subtitle": "Première apparition",
+			"ki": 10,
+			"image": "goku_01.png"
+		},
+		{
+			"id": 1,
+			"name": "Kame Sennin",
+			"subtitle": "(Jackie Chun)",
+			"ki": 139,
+			"image": "kame_sennin.png"
+		},
+		{
+			"id": 2,
+			"name": "Maître des Grues",
+			"subtitle": "22ème championnat des arts martiaux",
+			"ki": 120
+		},
+		{
+			"id": 3,
+			"name": "Ten Shin Han",
+			"subtitle": "22ème championnat des arts martiaux",
+			"ki": 180
+		},
+		{
+			"id": 4,
+			"name": "Son Goku",
+			"subtitle": "22ème championnat des arts martiaux",
+			"ki": 180
+		},
+		{
+			"id": 5,
+			"name": "Krilin",
+			"subtitle": "Après l'arrivée de Raditz sur Terre",
+			"ki": 206
+		},
+		{
+			"id": 6,
+			"name": "Piccolo Daimaô",
+			"subtitle": "Première apparition",
+			"ki": 260
+		},
+		{
+			"id": 7,
+			"name": "Son Goku",
+			"subtitle": "Lors du combat contre Piccolo Daimaô",
+			"ki": 260
+		},
+		{
+			"id": 8,
+			"name": "Piccolo",
+			"subtitle": "Lors du combat contre Radditz",
+			"ki": 408
+		},
+		{
+			"id": 9,
+			"name": "Son Goku",
+			"subtitle": "Lors du combat contre Radditz",
+			"ki": 416
+		}
+	]
+}

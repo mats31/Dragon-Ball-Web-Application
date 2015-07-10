@@ -25,6 +25,11 @@ var ParticleSystem = function(){
 	this.particleTexture;
 	this.pMaterial;
 	this.pivot;
+	this.updating = false;
+
+	// Characters
+	this.datas;
+	this.step = 0;
 
 	// Image attributes
 	this.img = new Image();
@@ -37,8 +42,7 @@ var ParticleSystem = function(){
 
 ParticleSystem.prototype.init = function(){
 
-	var button = document.getElementById('button'),
-		that = this,
+	var	that = this,
 		firstImage = 'goku_01.png',
 		promise;
 
@@ -75,22 +79,37 @@ ParticleSystem.prototype.init = function(){
 	this.canvas = document.createElement('canvas');
 	this.context = this.canvas.getContext('2d');
 
-	// Load first image
-	this.loadImage(firstImage).then(function(result){
-		console.log(result);
-		that.globalEvents();
+	// Load characters
+	this.loadJson().then(function(result){
+
+		that.datas = JSON.parse(result);
+
+		// Load first image from json
+		that.loadImage(that.datas.characters[that.step].image).then(function(result){
+			that.globalEvents();
+		}, function(err){
+			console.log(err);
+		});
+
 	}, function(err){
-		console.log(err);
+		alert(err);
 	});
+	
 
 };
 
 ParticleSystem.prototype.globalEvents = function(){
 
-	var that = this;
+	var that = this,
+		button = document.getElementById('button'),
+		next = document.getElementById('next');
 
 	button.addEventListener('click', function(){
 		that.appendRenderer();
+	}, false);
+
+	next.addEventListener('click', function(){
+		that.nextCharacter();
 	}, false);
 
 };
@@ -102,8 +121,6 @@ ParticleSystem.prototype.appendRenderer = function(){
 	this.particles = new THREE.Geometry();
 	this.particleTexture = THREE.ImageUtils.loadTexture(this.pathImg + "particle.png");
 
-	console.log(this.particles);
-
 	this.pMaterial = new THREE.PointCloudMaterial({
 		blending: THREE.AdditiveBlending,
 		map: this.particleTexture,
@@ -113,31 +130,7 @@ ParticleSystem.prototype.appendRenderer = function(){
 		sizeAttenuation:true
 	});
 
-	var pixels = this.context.getImageData(0,0,this.img.width,this.img.height),
-		step = this.density * 4,
-		x = 0,
-		y = 0;
-
-	for(x = 0; x < this.img.width * 4; x+= step) {
-
-    	for(y = this.img.height; y >= 0 ; y -= this.density) {
-
-    		var p = ((y * this.img.width * 4) + x);
-    		
-    		// Grab the actual data from the
-    		// pixel, ignoring any transparent ones
-    		if(pixels.data[p+3] > 0)
-		    {
-		    	var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
-		    	var color 		= new THREE.Color(pixelCol);
-		    	var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
-		    	
-		    	// push on the particle
-		    	this.particles.vertices.push(vector);
-		    	this.particles.colors.push(color);
-		    }
-    	}
-    }
+	this.createParticles();
 
     // create the particle system
     this.particleSystem = new THREE.PointCloud(
@@ -164,12 +157,78 @@ ParticleSystem.prototype.appendRenderer = function(){
     this.update();
 };
 
+ParticleSystem.prototype.createParticles = function(){
+
+	var pixels = this.context.getImageData(0,0,this.img.width,this.img.height),
+		step = this.density * 4,
+		x = 0,
+		y = 0;
+
+	for(x = 0; x < this.img.width * 4; x+= step) {
+
+    	for(y = this.img.height; y >= 0 ; y -= this.density) {
+
+    		var p = ((y * this.img.width * 4) + x);
+    		
+    		// Grab the actual data from the
+    		// pixel, ignoring any transparent ones
+    		if(pixels.data[p+3] > 0)
+		    {
+		    	var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
+		    	var color 		= new THREE.Color(pixelCol);
+		    	var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
+		    	
+		    	// push on the particle
+		    	this.particles.vertices.push(vector);
+		    	this.particles.colors.push(color);
+		    }
+    	}
+    }
+};
+
+ParticleSystem.prototype.updateParticles = function(){
+
+	this.updating = true;
+
+	var pixels = this.context.getImageData(0,0,this.img.width,this.img.height),
+		step = this.density * 4,
+		x = 0,
+		y = 0,
+		i = 0;
+
+	for(x = 0; x < this.img.width * 4; x+= step) {
+
+    	for(y = this.img.height; y >= 0 ; y -= this.density) {
+
+    		var p = ((y * this.img.width * 4) + x);
+    		
+    		// Grab the actual data from the
+    		// pixel, ignoring any transparent ones
+    		var pixelCol	= (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
+    		var color 		= new THREE.Color(pixelCol);
+    		var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
+    		
+    		// push on the particle
+    		if(i <= this.particles.vertices.length){
+    			this.particles.vertices[i] = vector;
+    			this.particles.colors[i]  = color;
+    		} else {
+    			this.particles.vertices.push(vector);
+    			this.particles.colors.push(color);
+    		}
+
+		   	i++;
+    	}
+    }
+};
+
 ParticleSystem.prototype.loadImage = function(image){
 
 	var that = this;
 
 	return new Promise(function(resolve, reject){
 
+		that.img = new Image();
 		that.img.src = that.pathImg + image;
 
 		that.img.onload = function(){
@@ -179,6 +238,7 @@ ParticleSystem.prototype.loadImage = function(image){
 				that.canvas.width = that.img.width;
 			  	that.canvas.height = that.img.height;
 
+			  	that.context.clearRect(0, 0, 9999, 9999);
 				that.context.drawImage(that.img,0,0,that.img.width,that.img.height);
 
 				resolve('Image loaded !');
@@ -189,8 +249,52 @@ ParticleSystem.prototype.loadImage = function(image){
 
 		};
 
+		that.img.onerror = function(){
+			reject(Error('Erreur réseau'));
+		}
+
 	});
 
+};
+
+ParticleSystem.prototype.loadJson = function(){
+
+	return new Promise(function(resolve,reject){
+
+		var req = new XMLHttpRequest();
+		req.open('GET', 'js/datas.json');
+
+		req.onload = function(){
+
+			if(req.status == 200){
+				resolve(req.response)
+			} else{
+				reject(Error(req.statusText));
+			}
+		};
+
+		req.onerror = function(){
+			reject(Error('Erreur réseau'));
+		};
+
+		req.send();
+	});
+
+};
+
+ParticleSystem.prototype.nextCharacter = function(){
+
+	var that = this;
+
+	if (this.step + 1 <= this.datas.characters.length)
+		this.step++;
+
+	this.loadImage(this.datas.characters[this.step].image).then(function(result){
+		console.log(result);
+		that.updateParticles();
+	}, function(err){
+		console.log(err);
+	});
 };
 
 ParticleSystem.prototype.update = function(){
@@ -199,6 +303,10 @@ ParticleSystem.prototype.update = function(){
 };
 
 ParticleSystem.prototype.render = function render(){
+	if (this.updating) {
+		this.particleSystem.geometry.verticesNeedUpdate = true;
+		this.particleSystem.geometry.colorsNeedUpdate = true;
+	}
 
   	this.particleSystem.rotation.y += 0.015;
   	this.cube.rotation.y += 0.015;

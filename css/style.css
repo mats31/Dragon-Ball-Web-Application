@@ -2,3 +2,10 @@ body{
 	margin: 0;
 	padding: 0;
 }
+
+#next{
+	bottom: 20px;
+	left: 20px;
+	position: absolute;
+	z-index: 1;
+}
