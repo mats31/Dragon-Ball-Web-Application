@@ -108,10 +108,15 @@ ParticleSystem.prototype.globalEvents = function(){
 
 	var that = this,
 		button = document.getElementById('button'),
+		previous = document.getElementById('previous'),
 		next = document.getElementById('next');
 
 	button.addEventListener('click', function(){
 		that.appendRenderer();
+	}, false);
+
+	previous.addEventListener('click', function(){
+		that.previousCharacter();
 	}, false);
 
 	next.addEventListener('click', function(){
@@ -160,8 +165,6 @@ ParticleSystem.prototype.appendRenderer = function(){
    this.scene.add( this.cube );
    this.cube.position.set(500, 200, 0);
 
-   console.log(this.particleSystem);
-
    this.update();
 };
 
@@ -193,9 +196,13 @@ ParticleSystem.prototype.createParticles = function(){
     	}
     }
 
-    this.limits = [];
+    this.limits = {
+    	"limit":[],
+    	"done":[]
+    };
     for (var i = 0; i < this.particles.vertices.length; i++) {
-		this.limits[i] = Math.floor(Math.random()*101) - 50; 
+		this.limits.limit[i] = Math.floor(Math.random()*101) - 50;
+		this.limits.done[i] = false;
 	};
 };
 
@@ -239,6 +246,10 @@ ParticleSystem.prototype.updateParticles = function(){
 		    	createjs.Tween.get(this.particles.colors[i])
 				    .to({r: this.nextParticles.colors[i].r, g: this.nextParticles.colors[i].g, b: this.nextParticles.colors[i].b}, 2000, createjs.Ease.QuartIn);
 
+				createjs.Tween.get(this.particles.vertices[i])
+				    .to({z: Math.floor(Math.random()*101) - 50}, 1500, createjs.Ease.QuartIn)
+				    .to({x:this.nextParticles.vertices[i].x,y:this.nextParticles.vertices[i].y,z: 0}, 1500, createjs.Ease.QuartIn);
+
 		    	i++;
 		    }
     	}
@@ -254,9 +265,13 @@ ParticleSystem.prototype.updateParticles = function(){
     	};
     };
 
-    this.limits = [];
-    for (var i = 0; i < this.nextParticles.vertices.length; i++) {
-		this.limits[i] = Math.floor(Math.random()*101) - 50; 
+    this.limits = {
+    	"limit":[],
+    	"done":[]
+    };
+    for (var i = 0; i < this.particles.vertices.length; i++) {
+		this.limits.limit[i] = Math.floor(Math.random()*101) - 50;
+		this.limits.done[i] = false;
 	};
 };
 
@@ -320,12 +335,28 @@ ParticleSystem.prototype.loadJson = function(){
 
 };
 
+ParticleSystem.prototype.previousCharacter = function(){
+
+	this.loading = false;
+
+	if (this.step - 1 >= 0){
+		this.step--;
+		this.changeCharacter();
+	}
+};
+
+
 ParticleSystem.prototype.nextCharacter = function(){
 
 	this.loading = false;
 
-	if (this.step + 1 <= this.datas.characters.length)
+	if (this.step + 1 <= this.datas.characters.length){
 		this.step++;
+		this.changeCharacter();
+	}
+};
+
+ParticleSystem.prototype.changeCharacter = function(){
 
 	var that = this;
 
@@ -341,24 +372,6 @@ ParticleSystem.prototype.nextCharacter = function(){
 			console.log(err);
 		});
 	};
-};
-
-ParticleSystem.prototype.changeCharacter = function(){
-
-	var that = this;
-
-	if (!this.loading) {
-
-		this.loading = true;
-
-		this.loadImage(this.datas.characters[this.step].image).then(function(result){
-			console.log(result);
-			that.updateParticles();
-		}, function(err){
-			console.log(err);
-		});
-	};
-
 }
 
 ParticleSystem.prototype.update = function(){
@@ -371,65 +384,63 @@ ParticleSystem.prototype.render = function render(){
 		this.particleSystem.geometry.verticesNeedUpdate = true;
 		this.particleSystem.geometry.colorsNeedUpdate = true;
 
-		var xStep = 1,
-			yStep = 3,
-			zStep = 0.5;
+		// var xStep = 1,
+		// 	yStep = 4,
+		// 	zStep = 0.5;
 
-		for (var i = 0; i < this.nextParticles.vertices.length; i++) {
+		// for (var i = 0; i < this.nextParticles.vertices.length; i++) {
 
-			var end = true;
+		// 	var end = true;
 
-			if (this.limits[i] > 0 && this.particles.vertices[i].z < this.limits[i]) {
-				this.particles.vertices[i].z += zStep;
-				end = false;
-			} else if (this.limits[i] < 0 && this.particles.vertices[i].z > this.limits[i]) {
-				this.particles.vertices[i].z -= zStep;
-				end = false;
-			}
+			// if (this.limits.limit[i] > 0 && this.particles.vertices[i].z < this.limits.limit[i] && this.limits.done[i] == false)
+			// 	this.particles.vertices[i].z += zStep;
+			// else if (this.limits.limit[i] < 0 && this.particles.vertices[i].z > this.limits.limit[i] && this.limits.done[i] == false)
+			// 	this.particles.vertices[i].z -= zStep;
 
-			if (typeof this.particles.vertices[i] != 'undefined') {
+			// console.log(this.limits.done[i]);
+			
+			// if (this.limits.limit[i] > 0 && this.particles.vertices[i].z == this.limits.limit[i] && this.particles.vertices[i].z > 0){
+			// 	this.limits.done[i] = true;
+			// 	if (this.limits.done[i])
+			// 		this.particles.vertices[i].z -= zStep;
+			// } else if (this.limits.limit[i] < 0 && this.particles.vertices[i].z == this.limits.limit[i] && this.particles.vertices[i].z < 0){
+			// 	this.limits.done[i] = true;
+			// 	if (this.limits.done[i])
+			// 		this.particles.vertices[i].z += zStep;
+			// }
 
-				if (this.nextParticles.vertices[i].x > this.particles.vertices[i].x) {
-					if (this.particles.vertices[i].x >= this.nextParticles.vertices[i].x - xStep)
-						this.particles.vertices[i].x = this.nextParticles.vertices[i].x;
-					else
-						this.particles.vertices[i].x += xStep;
-				}
 
-				if (this.nextParticles.vertices[i].x < this.particles.vertices[i].x) {
-					if (this.particles.vertices[i].x <= this.nextParticles.vertices[i].x + xStep)
-						this.particles.vertices[i].x = this.nextParticles.vertices[i].x;
-					else
-						this.particles.vertices[i].x -= xStep;
-				}
+			// if (typeof this.particles.vertices[i] != 'undefined') {
 
-				if (this.nextParticles.vertices[i].y > this.particles.vertices[i].y) {
-					if (this.particles.vertices[i].y >= this.nextParticles.vertices[i].y - yStep)
-						this.particles.vertices[i].y = this.nextParticles.vertices[i].y;
-					else
-						this.particles.vertices[i].y += yStep;
-				}
+			// 	if (this.nextParticles.vertices[i].x > this.particles.vertices[i].x) {
+			// 		if (this.particles.vertices[i].x >= this.nextParticles.vertices[i].x - xStep)
+			// 			this.particles.vertices[i].x = this.nextParticles.vertices[i].x;
+			// 		else
+			// 			this.particles.vertices[i].x += xStep;
+			// 	}
 
-				if (this.nextParticles.vertices[i].y < this.particles.vertices[i].y) {
-					if (this.particles.vertices[i].y <= this.nextParticles.vertices[i].y + yStep)
-						this.particles.vertices[i].y = this.nextParticles.vertices[i].y;
-					else
-						this.particles.vertices[i].y -= yStep;
-				}
-			};
+			// 	if (this.nextParticles.vertices[i].x < this.particles.vertices[i].x) {
+			// 		if (this.particles.vertices[i].x <= this.nextParticles.vertices[i].x + xStep)
+			// 			this.particles.vertices[i].x = this.nextParticles.vertices[i].x;
+			// 		else
+			// 			this.particles.vertices[i].x -= xStep;
+			// 	}
 
-			if (i == this.nextParticles.vertices.length - 1 && end) {
-				for (var j = 0; j < this.nextParticles.vertices.length; j++) {
+			// 	if (this.nextParticles.vertices[i].y > this.particles.vertices[i].y) {
+			// 		if (this.particles.vertices[i].y >= this.nextParticles.vertices[i].y - yStep)
+			// 			this.particles.vertices[i].y = this.nextParticles.vertices[i].y;
+			// 		else
+			// 			this.particles.vertices[i].y += yStep;
+			// 	}
 
-					if (this.particles.vertices[j].z > 0)
-						this.particles.vertices[j].z -= zStep;
-
-					if (this.particles.vertices[j].z < 0)
-						this.particles.vertices[j].z += zStep;
-				}
-			};
-
-		};
+			// 	if (this.nextParticles.vertices[i].y < this.particles.vertices[i].y) {
+			// 		if (this.particles.vertices[i].y <= this.nextParticles.vertices[i].y + yStep)
+			// 			this.particles.vertices[i].y = this.nextParticles.vertices[i].y;
+			// 		else
+			// 			this.particles.vertices[i].y -= yStep;
+			// 	}
+			// };
+		//};
 
 		// var end = true;
 

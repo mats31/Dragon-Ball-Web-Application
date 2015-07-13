@@ -3,7 +3,7 @@ body{
 	padding: 0;
 }
 
-#next{
+.controls{
 	bottom: 20px;
 	left: 20px;
 	position: absolute;

@@ -12,55 +12,217 @@
 			"name": "Kame Sennin",
 			"subtitle": "(Jackie Chun)",
 			"ki": 139,
-			"image": "kame_sennin.png"
+			"image": "kame_sennin_01.png"
 		},
 		{
 			"id": 2,
 			"name": "Maître des Grues",
 			"subtitle": "22ème championnat des arts martiaux",
-			"ki": 120
+			"ki": 120,
+			"image": "maitre_des_grues_01.png"
 		},
 		{
 			"id": 3,
 			"name": "Ten Shin Han",
 			"subtitle": "22ème championnat des arts martiaux",
-			"ki": 180
+			"ki": 180,
+			"image": "ten_shin_han_01.png"
 		},
 		{
 			"id": 4,
 			"name": "Son Goku",
 			"subtitle": "22ème championnat des arts martiaux",
-			"ki": 180
+			"ki": 180,
+			"image": "goku_02.png"
 		},
 		{
 			"id": 5,
 			"name": "Krilin",
 			"subtitle": "Après l'arrivée de Raditz sur Terre",
-			"ki": 206
+			"ki": 206,
+			"image": "krilin_01.png"
 		},
 		{
 			"id": 6,
 			"name": "Piccolo Daimaô",
 			"subtitle": "Première apparition",
-			"ki": 260
+			"ki": 260,
+			"image": "piccolo_daimao_01.png"
 		},
 		{
 			"id": 7,
 			"name": "Son Goku",
 			"subtitle": "Lors du combat contre Piccolo Daimaô",
-			"ki": 260
+			"ki": 260,
+			"image": "goku_03.png"
 		},
 		{
 			"id": 8,
 			"name": "Piccolo",
 			"subtitle": "Lors du combat contre Radditz",
-			"ki": 408
+			"ki": 408,
+			"image": "piccolo_01.png"
 		},
 		{
 			"id": 9,
 			"name": "Son Goku",
 			"subtitle": "Lors du combat contre Radditz",
-			"ki": 416
+			"ki": 416,
+			"image": "goku_04.png"
+		},
+		{
+			"id": 10,
+			"name": "Chaozu",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"ki": 610,
+			"image": "chaozu_01.png"
+		},
+		{
+			"id": 11,
+			"name": "Saibaiman",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"ki": 1200,
+			"image": "saibaiman_01.png"
+		},
+		{
+			"id": 12,
+			"name": "Son Gohan",
+			"subtitle": "Lors du combat contre Raditz",
+			"ki": 1307,
+			"image": "gohan_01.png"
+		},
+		{
+			"id": 13,
+			"name": "Raditz",
+			"subtitle": "Lors du combat contre Son Goku & Piccolo",
+			"ki": 1500,
+			"image": "raditz_01.png"
+		},
+		{
+			"id": 14,
+			"name": "Krilin",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"ki": 1770,
+			"image": "krilin_02.png"
+		},
+		{
+			"id": 15,
+			"name": "Ten Shin Han",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"ki": 1830,
+			"image": "ten_shin_han_02.png"
+		},
+		{
+			"id": 16,
+			"name": "Piccolo",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"ki": 3500,
+			"image": "piccolo_02.png"
+		},
+		{
+			"id": 17,
+			"name": "Nappa",
+			"subtitle": "Lors du combat sur Terre",
+			"ki": 4000,
+			"image": "nappa_01.png"
+		},
+		{
+			"id": 18,
+			"name": "Son Goku",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"ki": 8000,
+			"image": "goku_05.png"
+		},
+		{
+			"id": 19,
+			"name": "Krilin",
+			"subtitle": "Lors du combat contre le commando Ginue",
+			"ki": 13000,
+			"image": "krilin_03.png"
+		},
+		{
+			"id": 20,
+			"name": "Son Gohan",
+			"subtitle": "Lors du combat contre le commando Ginue",
+			"ki": 14000,
+			"image": "gohan_02.png"
+		},
+		{
+			"id": 21,
+			"name": "Son Goku",
+			"subtitle": "Lors du combat contre les Saiyajins - Nibaï Kaioken",
+			"ki": 16000,
+			"image": "goku_06.png"
+		},
+		{
+			"id": 22,
+			"name": "Bejîta",
+			"subtitle": "Lors de son arrivée sur Terre",
+			"ki": 18000,
+			"image": "bejita_01.png"
+		},
+		{
+			"id": 23,
+			"name": "Son Goku",
+			"subtitle": "Lors du combat contre les Saiyajins - Sambaï Kaioken",
+			"ki": 24000,
+			"image": "goku_07.png"
+		},
+		{
+			"id": 24,
+			"name": "Bejîta",
+			"subtitle": "Lors de son combat contre le commando Ginue",
+			"ki": 30000,
+			"image": "bejita_02.png"
+		},
+		{
+			"id": 25,
+			"name": "Son Goku",
+			"subtitle": "Lors du combat contre les Saiyajins - Yombaï Kaioken",
+			"ki": 32000,
+			"image": "goku_08.png"
+		},
+		{
+			"id": 26,
+			"name": "Nail",
+			"subtitle": "Lors de son combat face à Freezer",
+			"ki": 42000,
+			"image": "nail_01.png"
+		},
+		{
+			"id": 27,
+			"name": "Son Goku",
+			"subtitle": "Lors de son arrivée sur Namek",
+			"ki": 90000,
+			"image": "goku_09.png"
+		},
+		{
+			"id": 28,
+			"name": "Freezer",
+			"subtitle": "Sur Namek",
+			"ki": 530000,
+			"image": "freezer_01.png"
+		},
+		{
+			"id": 29,
+			"name": "Freezer",
+			"subtitle": "Sur Namek - 1ère transformation",
+			"ki": 1000000,
+			"image": "freezer_02.png"
+		},
+		{
+			"id": 30,
+			"name": "Son Goku",
+			"subtitle": "Lors de son combat contre Freezer",
+			"ki": 3000000,
+			"image": "goku_10.png"
+		},
+		{
+			"id": 31,
+			"name": "Freezer",
+			"subtitle": "Sur Namek - 3ème transformation à 50%",
+			"ki": 60000000,
+			"image": "freezer_03.png"
 		}
 	]
 }
