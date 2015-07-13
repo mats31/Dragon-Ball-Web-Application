@@ -20,6 +20,11 @@ var ParticleSystem = function(){
 	this.context;
 
 	// Particles attributes
+	this.limits;
+	this.nextParticles = {
+		"colors":[],
+		"vertices":[]
+	};
 	this.particles;
 	this.particleSystem;
 	this.particleTexture;
@@ -34,6 +39,7 @@ var ParticleSystem = function(){
 	// Image attributes
 	this.img = new Image();
 	this.pathImg = 'img/';
+	this.loading = false;
 
 	//tests
 	this.cube;
@@ -154,7 +160,9 @@ ParticleSystem.prototype.appendRenderer = function(){
    this.scene.add( this.cube );
    this.cube.position.set(500, 200, 0);
 
-    this.update();
+   console.log(this.particleSystem);
+
+   this.update();
 };
 
 ParticleSystem.prototype.createParticles = function(){
@@ -184,22 +192,30 @@ ParticleSystem.prototype.createParticles = function(){
 		    }
     	}
     }
+
+    this.limits = [];
+    for (var i = 0; i < this.particles.vertices.length; i++) {
+		this.limits[i] = Math.floor(Math.random()*101) - 50; 
+	};
 };
 
 ParticleSystem.prototype.updateParticles = function(){
-
-	this.updating = true;
 
 	var pixels = this.context.getImageData(0,0,this.img.width,this.img.height),
 		step = this.density * 4,
 		x = 0,
 		y = 0,
-		i = 0;
+		i = 0,
+		j = 0,
+		that = this;
 
-	for (var j = 0; j < this.particles.vertices.length; j++) {
+	this.nextParticles.vertices = [];
+	this.nextParticles.colors   = []; 
+
+	// for (var j = 0; j < this.particles.vertices.length; j++) {
 		
-		this.particles.colors[j] = new THREE.Color('black');
-	};
+	// 	this.particles.colors[j] = new THREE.Color('black');
+	// };
 
 	for(x = 0; x < this.img.width * 4; x+= step) {
 
@@ -216,13 +232,32 @@ ParticleSystem.prototype.updateParticles = function(){
 		    	var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
 		    	
 		    	// push on the particle
-		    	this.particles.vertices[i] = vector;
-		    	this.particles.colors[i] = color;
+		    	this.nextParticles.vertices.push(vector);
+		    	this.nextParticles.colors.push(color);
+		    	//this.particles.colors[i] = color;
+
+		    	createjs.Tween.get(this.particles.colors[i])
+				    .to({r: this.nextParticles.colors[i].r, g: this.nextParticles.colors[i].g, b: this.nextParticles.colors[i].b}, 2000, createjs.Ease.QuartIn);
 
 		    	i++;
 		    }
     	}
     }
+
+    if (this.particles.vertices.length > this.nextParticles.vertices.length) {
+    	var surplus = this.particles.vertices.length - this.nextParticles.vertices.length,
+    		end = false;
+
+    	for (surplus; surplus < this.particles.vertices.length; surplus++) {
+	    	createjs.Tween.get(this.particles.colors[surplus])
+			    .to({r: 0, g: 0, b: 0}, 2000, createjs.Ease.QuartIn);
+    	};
+    };
+
+    this.limits = [];
+    for (var i = 0; i < this.nextParticles.vertices.length; i++) {
+		this.limits[i] = Math.floor(Math.random()*101) - 50; 
+	};
 };
 
 ParticleSystem.prototype.loadImage = function(image){
@@ -287,18 +322,44 @@ ParticleSystem.prototype.loadJson = function(){
 
 ParticleSystem.prototype.nextCharacter = function(){
 
-	var that = this;
+	this.loading = false;
 
 	if (this.step + 1 <= this.datas.characters.length)
 		this.step++;
 
-	this.loadImage(this.datas.characters[this.step].image).then(function(result){
-		console.log(result);
-		that.updateParticles();
-	}, function(err){
-		console.log(err);
-	});
+	var that = this;
+
+	if (!this.loading) {
+
+		this.loading = true;
+
+		this.loadImage(this.datas.characters[this.step].image).then(function(result){
+			console.log(result);
+			that.updating = true;
+			that.updateParticles();
+		}, function(err){
+			console.log(err);
+		});
+	};
 };
+
+ParticleSystem.prototype.changeCharacter = function(){
+
+	var that = this;
+
+	if (!this.loading) {
+
+		this.loading = true;
+
+		this.loadImage(this.datas.characters[this.step].image).then(function(result){
+			console.log(result);
+			that.updateParticles();
+		}, function(err){
+			console.log(err);
+		});
+	};
+
+}
 
 ParticleSystem.prototype.update = function(){
 	requestAnimationFrame(this.update.bind(this));
@@ -309,6 +370,83 @@ ParticleSystem.prototype.render = function render(){
 	if (this.updating) {
 		this.particleSystem.geometry.verticesNeedUpdate = true;
 		this.particleSystem.geometry.colorsNeedUpdate = true;
+
+		var xStep = 1,
+			yStep = 3,
+			zStep = 0.5;
+
+		for (var i = 0; i < this.nextParticles.vertices.length; i++) {
+
+			var end = true;
+
+			if (this.limits[i] > 0 && this.particles.vertices[i].z < this.limits[i]) {
+				this.particles.vertices[i].z += zStep;
+				end = false;
+			} else if (this.limits[i] < 0 && this.particles.vertices[i].z > this.limits[i]) {
+				this.particles.vertices[i].z -= zStep;
+				end = false;
+			}
+
+			if (typeof this.particles.vertices[i] != 'undefined') {
+
+				if (this.nextParticles.vertices[i].x > this.particles.vertices[i].x) {
+					if (this.particles.vertices[i].x >= this.nextParticles.vertices[i].x - xStep)
+						this.particles.vertices[i].x = this.nextParticles.vertices[i].x;
+					else
+						this.particles.vertices[i].x += xStep;
+				}
+
+				if (this.nextParticles.vertices[i].x < this.particles.vertices[i].x) {
+					if (this.particles.vertices[i].x <= this.nextParticles.vertices[i].x + xStep)
+						this.particles.vertices[i].x = this.nextParticles.vertices[i].x;
+					else
+						this.particles.vertices[i].x -= xStep;
+				}
+
+				if (this.nextParticles.vertices[i].y > this.particles.vertices[i].y) {
+					if (this.particles.vertices[i].y >= this.nextParticles.vertices[i].y - yStep)
+						this.particles.vertices[i].y = this.nextParticles.vertices[i].y;
+					else
+						this.particles.vertices[i].y += yStep;
+				}
+
+				if (this.nextParticles.vertices[i].y < this.particles.vertices[i].y) {
+					if (this.particles.vertices[i].y <= this.nextParticles.vertices[i].y + yStep)
+						this.particles.vertices[i].y = this.nextParticles.vertices[i].y;
+					else
+						this.particles.vertices[i].y -= yStep;
+				}
+			};
+
+			if (i == this.nextParticles.vertices.length - 1 && end) {
+				for (var j = 0; j < this.nextParticles.vertices.length; j++) {
+
+					if (this.particles.vertices[j].z > 0)
+						this.particles.vertices[j].z -= zStep;
+
+					if (this.particles.vertices[j].z < 0)
+						this.particles.vertices[j].z += zStep;
+				}
+			};
+
+		};
+
+		// var end = true;
+
+		// for (var i = 0; i < this.particles.vertices.length; i++) {
+			
+		// 	if (this.limits[i] > 0 && this.particles.vertices[i].z < this.limits[i]) {
+		// 		this.particles.vertices[i].z += 1;
+		// 		end = false;
+		// 	} else if (this.limits[i] < 0 && this.particles.vertices[i].z > this.limits[i]) {
+		// 		this.particles.vertices[i].z -= 1;
+		// 		end = false;
+		// 	}
+
+		// 	if(i == this.particles.vertices.length - 1 && end)
+		// 		this.changeCharacter();
+
+		// };		
 	}
 
   	this.particleSystem.rotation.y += 0.015;
