@@ -10,7 +10,7 @@ var ParticleSystem = function(){
 	// Camera attributes
 	this.aspect;
 	this.camera;
-	this.density = 3;
+	this.density = 4;
 	this.far = 10000;
 	this.near = 0.1;
 	this.view_angle = 45;
@@ -21,6 +21,7 @@ var ParticleSystem = function(){
 
 	// Particles attributes
 	this.limits;
+	this.maxParticles = 50000;
 	this.nextParticles = {
 		"colors":[],
 		"vertices":[]
@@ -176,7 +177,7 @@ ParticleSystem.prototype.createParticles = function(){
 		x = 0,
 		y = 0;
 
-	for (var i = 0; i < 30276; i++) {
+	for (var i = 0; i < this.maxParticles; i++) {
 		var vector = new THREE.Vector3(0,0,0);
 		var color = new THREE.Color('black');
 
@@ -236,7 +237,7 @@ ParticleSystem.prototype.updateParticles = function(){
 	// 	}
 	// };
 
-	for(x = 0; x < 50000; x+= step) {
+	for(x = 0; x < this.maxParticles; x+= step) {
 
     	for(y = this.img.height; y >= 0 ; y -= this.density) {
 
