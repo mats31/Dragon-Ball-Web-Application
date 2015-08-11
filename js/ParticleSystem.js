@@ -21,7 +21,7 @@ var ParticleSystem = function(){
 
 	// Particles attributes
 	this.limits;
-	this.maxParticles = 50000;
+	this.maxParticles = 28000;
 	this.nextParticles = {
 		"colors":[],
 		"vertices":[]
@@ -63,7 +63,9 @@ ParticleSystem.prototype.init = function(){
 	this.aspect = this.width/this.height;
 
 	// Set renderer for webgl
-	this.renderer = new THREE.WebGLRenderer();
+	this.renderer = new THREE.WebGLRenderer({
+		alpha: true
+	});
 	this.renderer.setSize(this.width, this.height);
 
 	// Set camera with PerspectiveCamera
@@ -253,19 +255,23 @@ ParticleSystem.prototype.updateParticles = function(){
 			    	var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
 			    	
 			    	// push on the particle
-			    	//this.particles.vertices[j] = vector;
+			    	this.particles.vertices[j].x = vector.x;
+			    	this.particles.vertices[j].y = vector.y;
 			    	//this.particles.colors[j] = color;
 
     		    	createjs.Tween.get(this.particles.colors[j])
-    				    .to({r: color.r, g: color.g, b: color.b}, 2000, createjs.Ease.QuartIn);
+    				    .to({r: color.r, g: color.g, b: color.b}, 3000, createjs.Ease.QuartIn);
 
     				createjs.Tween.get(this.particles.vertices[j])
     				    .to({z: Math.floor(Math.random()*101) - 50}, 1500, createjs.Ease.QuartIn)
-    				    .to({x:vector.x,y:vector.y,z: 0}, 1500, createjs.Ease.QuartIn);
+    				    .to({z: 0}, 1500, createjs.Ease.QuartIn);
+    				// createjs.Tween.get(this.particles.vertices[j])
+    				//     .to({x:0, y:0, z:0}, 1500, createjs.Ease.QuartIn)
+    				//     .to({x:vector.x,y:vector.y,z: 0}, 1500, createjs.Ease.QuartIn);
 
 			    } else {
 			    	var color 		= new THREE.Color('black');
-			    	var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
+			    	var vector 		= new THREE.Vector3(9999, 9999, 0);
 			    	
 			    	// push on the particle
 			    	this.particles.vertices[j] = vector;
@@ -274,7 +280,7 @@ ParticleSystem.prototype.updateParticles = function(){
 
     		} else{
     			var color 		= new THREE.Color('black');
-    			var vector 		= new THREE.Vector3(-this.img.width/2 + x/4, -y, 0);
+    			var vector 		= new THREE.Vector3(9999, 9999, 0);
     			
     			// push on the particle
     			this.particles.vertices[j] = vector;
