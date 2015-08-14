@@ -81,7 +81,7 @@ ParticleSystem.prototype.init = function(){
 	this.scene.add(this.camera);
 
 	// Set z position for camera
-	this.camera.position.x = 300;
+	this.camera.position.x = 335;
 	this.camera.position.y = -300;
 	this.camera.position.z = 1000;
 
