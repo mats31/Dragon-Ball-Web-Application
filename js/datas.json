@@ -116,7 +116,7 @@
 			"id": 14,
 			"name": "Raditz",
 			"subtitle": "Lors du combat contre Son Goku & Piccolo",
-			"description": "Sa puissance et sa vitesse sont démesurées. Son Goku et Piccolo ne furent que de simples jouets pour lui, et cela, bien qu'il soit un guerrir Saiyajin de caste inférieur",
+			"description": "Sa puissance et sa vitesse sont démesurées. Son Goku et Piccolo ne furent que de simples jouets pour lui, et cela, bien qu'il soit un guerrier Saiyajin de caste inférieur.",
 			"ki": 1500,
 			"image": "raditz_01.png"
 		},
@@ -124,7 +124,7 @@
 			"id": 15,
 			"name": "Krilin",
 			"subtitle": "Lors du combat contre les Saiyajins",
-			"description": "Après son entraînement d'environ 1 an, Krillin augmente considérablement sa puissance. Il est l'un des seuls survivants du combat face aux Saiyajins",
+			"description": "Après son entraînement d'environ 1 an, Krillin augmente considérablement sa puissance. Il est l'un des seuls survivants du combat face aux Saiyajins.",
 			"ki": 1770,
 			"image": "krilin_02.png"
 		},
@@ -252,7 +252,7 @@
 			"id": 31,
 			"name": "Freezer",
 			"subtitle": "Sur Namek - 1ère transformation",
-			"description": "La 1ère transformation de Freezer lui permet d'augmenter son ki. Il combat Piccolo sous cette forme",
+			"description": "La 1ère transformation de Freezer lui permet d'augmenter son ki. Il combat Piccolo sous cette forme.",
 			"ki": 1000000,
 			"image": "freezer_02.png"
 		},

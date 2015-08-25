@@ -47,6 +47,7 @@ var ParticleSystem = function(){
 	this.subtitle = document.getElementById('subtitle');
 	this.description = document.getElementById('description');
 	this.ki = document.getElementById('ki');
+	this.disableChange = true;
 };
 
 ParticleSystem.prototype.init = function(){
@@ -82,7 +83,7 @@ ParticleSystem.prototype.init = function(){
 	this.scene.add(this.camera);
 
 	// Set positions for camera
-	this.camera.position.x = (this.width / 2) / 2.4;
+	this.camera.position.x = (this.width / 2) / 2.1;
 	this.camera.position.y = -300;
 	this.camera.position.z = 1000;
 
@@ -98,6 +99,7 @@ ParticleSystem.prototype.init = function(){
 		// Load first image from json
 		that.loadImage(that.datas.characters[that.step].image).then(function(result){
 			that.globalEvents();
+			that.appendRenderer();
 		}, function(err){
 			console.log(err);
 		});
@@ -116,19 +118,32 @@ ParticleSystem.prototype.globalEvents = function(){
 		previous = document.getElementById('previous'),
 		next = document.getElementById('next');
 
-	button.addEventListener('click', function(){
-		that.appendRenderer();
+	// button.addEventListener('click', function(){
+	// 	that.appendRenderer();
+	// }, false);
+	
+	window.addEventListener('resize', function(){
+		that.resizeScene();
 	}, false);
 
 	previous.addEventListener('click', function(){
-		that.previousCharacter();
+		if (that.disableChange)
+			that.previousCharacter();
 	}, false);
 
 	next.addEventListener('click', function(){
-		that.nextCharacter();
+		if (that.disableChange)
+			that.nextCharacter();
 	}, false);
 
 };
+
+ParticleSystem.prototype.resizeScene = function(){
+	this.camera.aspect = window.innerWidth / window.innerHeight;
+	this.camera.updateProjectionMatrix();
+
+	this.renderer.setSize(window.innerWidth, window.innerHeight);
+}
 
 ParticleSystem.prototype.appendRenderer = function(){
 
@@ -196,6 +211,8 @@ ParticleSystem.prototype.updateParticles = function(){
 		j = 0,
 		that = this;
 
+	this.disableChange = false;
+
 	for(x = 0; x < this.maxParticles; x+= step) {
 
     	for(y = this.img.height; y >= 0 ; y -= this.density) {
@@ -243,6 +260,10 @@ ParticleSystem.prototype.updateParticles = function(){
 			j++;	
     	}
     }
+
+    setTimeout(function(){
+    	that.disableChange = true;
+    }, 3000);
 };
 
 ParticleSystem.prototype.loadImage = function(image){
@@ -321,7 +342,7 @@ ParticleSystem.prototype.nextCharacter = function(){
 
 	this.loading = false;
 
-	if (this.step + 1 <= this.datas.characters.length){
+	if (this.step + 1 < this.datas.characters.length){
 		this.step++;
 		this.changeCharacter();
 		this.updatePanel();
