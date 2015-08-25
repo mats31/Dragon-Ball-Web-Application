@@ -9,19 +9,30 @@
 </head>
 <body>
 	<div id="container"></div>
+
 	<div class="controls">
-		<a id="previous" href="javascript:void(0)">Previous</a>
-		<a id="next" href="javascript:void(0)">Next</a>
+		<a id="previous" class="button-nav" href="javascript:void(0)"><</a>
+		<a id="next" class="button-nav" href="javascript:void(0)">></a>
+		<a href="javascript:void(0)" id="button">Start</a>
 	</div>
+
 	<div class="presentation">
 		<h1>Dragon Ball Web Application</h1>
 		<a href="javascript:void(0)" id="button">Start</a>
 	</div>
 
-	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
-	<script src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+	<div class="panel">
+		<h2 id="name"></h2>
+		<p id="subtitle"></p>
+		<p id="description"></p>
+		<p id="ki"></p>
+	</div>
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/three.min.js"></script>
+	<script src="js/tweenjs-0.6.1.min.js"></script>
 	<script src="js/customColor.js" type="text/javascript"></script>
+	<script src="js/countUp.min.js" type="text/javascript"></script>
 	<script src="js/ParticleSystem.js" type="text/javascript"></script>
 </body>
 </html>

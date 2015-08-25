@@ -13,8 +13,26 @@ body{
 }
 
 .controls{
-	bottom: 20px;
-	left: 20px;
+	bottom: 70px;
+	left: 80%;
 	position: absolute;
 	z-index: 1;
+}
+
+.controls .button-nav{
+	background-color: yellow;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 30px;
+	line-height: 0.5;
+	padding: 20px 0;
+	text-align: center;
+	width: 100px;
+}
+
+.panel{
+    left: 50%;
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }

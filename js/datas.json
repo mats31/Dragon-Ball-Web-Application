@@ -4,27 +4,31 @@
 			"id": 0,
 			"name": "Son Goku",
 			"subtitle": "Première apparition",
+			"description": "Il a déjà une puissance deux fois supérieure à un homme normal. Son corps est si robuste que même les balles sont innefficaces contre lui.",
 			"ki": 10,
 			"image": "goku_01.png"
 		},
 		{
 			"id": 1,
-			"name": "Kame Sennin",
-			"subtitle": "(Jackie Chun)",
-			"ki": 139,
-			"image": "kame_sennin_01.png"
+			"name": "Maître des Grues",
+			"subtitle": "Lors du 22ème championnat des arts martiaux",
+			"description": "Il fut l'ancien rival de Kame Sennin autrefois. Mais il ne le surpasse pas en puissance.",
+			"ki": 120,
+			"image": "maitre_des_grues_01.png"
 		},
 		{
 			"id": 2,
-			"name": "Maître des Grues",
-			"subtitle": "22ème championnat des arts martiaux",
-			"ki": 120,
-			"image": "maitre_des_grues_01.png"
+			"name": "Kame Sennin",
+			"subtitle": "(Jackie Chun)",
+			"description": "En se dissimulant sous le nom de Jackie Chun, il éprouve ses disciples afin de constater les résultats de son entrainement. Ils sert d'intermédiaire pour l'avènement de la nouvelle génération.",
+			"ki": 139,
+			"image": "kame_sennin_01.png"
 		},
 		{
 			"id": 3,
 			"name": "Ten Shin Han",
 			"subtitle": "22ème championnat des arts martiaux",
+			"description": "Dépassant en puissance et en technique le niveau humain, c'est un adversaire de taille. Il fut de force équivalente à Son Goku lors de leur combat.",
 			"ki": 180,
 			"image": "ten_shin_han_01.png"
 		},
@@ -32,6 +36,7 @@
 			"id": 4,
 			"name": "Son Goku",
 			"subtitle": "22ème championnat des arts martiaux",
+			"description": "Son Goku réalise d'énormes progrès grâce aux entraînements qu'il subit et aux combats qu'il mène. Il aurait pu remporter son combat contre Ten Shin Han s'il avait eu plus de chance ce jour-là.",
 			"ki": 180,
 			"image": "goku_02.png"
 		},
@@ -39,6 +44,7 @@
 			"id": 5,
 			"name": "Krilin",
 			"subtitle": "Après l'arrivée de Raditz sur Terre",
+			"description": "Le premier humain à avoir dépassé Kame Sennin grâce à ses aptitudes et à la persevérance de son entraînement. Il est toujours en première ligne pour aider Son Goku.",
 			"ki": 206,
 			"image": "krilin_01.png"
 		},
@@ -46,6 +52,7 @@
 			"id": 6,
 			"name": "Piccolo Daimaô",
 			"subtitle": "Première apparition",
+			"description": "En même temps que la jeunesse, il retrouva sa force maximum. Celle-ci, capable de détruire des cités entières, pouvait être assimilée à une bombe nucléaire de petite puissance.",
 			"ki": 260,
 			"image": "piccolo_daimao_01.png"
 		},
@@ -53,6 +60,7 @@
 			"id": 7,
 			"name": "Son Goku",
 			"subtitle": "Lors du combat contre Piccolo Daimaô",
+			"description": "Après avoir bu le choshinsui, l'eau sacrée, sa puissance cachée fut révélée. Sa force égala alors celle de Piccolo Daimaô. Avec l'aide de Ten Shin Han, il livra au démon un combat acharné.",
 			"ki": 260,
 			"image": "goku_03.png"
 		},
@@ -60,6 +68,7 @@
 			"id": 8,
 			"name": "Piccolo",
 			"subtitle": "Lors du combat contre Radditz",
+			"description": "Quand il enlève ses vêtements de force, il atteint sa pleine puissance. Celle-ci peut même atteindre 1300 quand il libère le Makankosappo",
 			"ki": 408,
 			"image": "piccolo_01.png"
 		},
@@ -67,6 +76,7 @@
 			"id": 9,
 			"name": "Son Goku",
 			"subtitle": "Lors du combat contre Radditz",
+			"description": "Quand il enlève ses vêtements de force, il atteint sa pleine puissance. Celle-ci peut même atteindre 924 quand il libère le Kamehameha",
 			"ki": 416,
 			"image": "goku_04.png"
 		},
@@ -74,6 +84,7 @@
 			"id": 10,
 			"name": "Chaozu",
 			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Après son entraînement d'environ 1 an, Chaozu périt lors de son combat face à Nappa",
 			"ki": 610,
 			"image": "chaozu_01.png"
 		},
@@ -81,6 +92,7 @@
 			"id": 11,
 			"name": "Saibaiman",
 			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Les Saibaimans créés sur Terre sont puissants ! L'un d'entre eux réussi même à vaincre Yamcha.",
 			"ki": 1200,
 			"image": "saibaiman_01.png"
 		},
@@ -88,141 +100,193 @@
 			"id": 12,
 			"name": "Son Gohan",
 			"subtitle": "Lors du combat contre Raditz",
+			"description": "Son potentiel varie selon ses émotions. Sa puissance cachée est déjà supérieure à celle de son père. Il a seulement quatre ans.",
 			"ki": 1307,
 			"image": "gohan_01.png"
 		},
 		{
 			"id": 13,
+			"name": "Yamcha",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Malgré son entrainement d'environ 1 an, même Yamcha n'a pas pu tenir tête aux terribles Saibaimans.",
+			"ki": 1480,
+			"image": "yamcha_01.png"
+		},
+		{
+			"id": 14,
 			"name": "Raditz",
 			"subtitle": "Lors du combat contre Son Goku & Piccolo",
+			"description": "Sa puissance et sa vitesse sont démesurées. Son Goku et Piccolo ne furent que de simples jouets pour lui, et cela, bien qu'il soit un guerrir Saiyajin de caste inférieur",
 			"ki": 1500,
 			"image": "raditz_01.png"
 		},
 		{
-			"id": 14,
+			"id": 15,
 			"name": "Krilin",
 			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Après son entraînement d'environ 1 an, Krillin augmente considérablement sa puissance. Il est l'un des seuls survivants du combat face aux Saiyajins",
 			"ki": 1770,
 			"image": "krilin_02.png"
 		},
 		{
-			"id": 15,
+			"id": 16,
 			"name": "Ten Shin Han",
 			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Après son entraînement d'environ 1 an, Ten Shin Han devient le terrien le plus puissant. Malheuresemennt, cela ne l'a pas empêché de se faire tuer par Nappa.",
 			"ki": 1830,
 			"image": "ten_shin_han_02.png"
 		},
 		{
-			"id": 16,
+			"id": 17,
+			"name": "Son Gohan",
+			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Après son entraînement d'environ 1 an, Son Gohan parvient à contrôler sa puissance. Il parvient même à monter son ki à 2800 lorsqu'il pratique le Masenko.",
+			"ki": 2800,
+			"image": "gohan_02.png"
+		},
+		{
+			"id": 18,
 			"name": "Piccolo",
 			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Après son entraînement d'environ 1 an avec Son Gohan, Piccolo se rapproche du niveau de Nappa. Il se fait néanmoins tuer par ce dernier.",
 			"ki": 3500,
 			"image": "piccolo_02.png"
 		},
 		{
-			"id": 17,
+			"id": 19,
 			"name": "Nappa",
 			"subtitle": "Lors du combat sur Terre",
+			"description": "Nappa se rend sur Terre avec Bejîta afin de récupérer les Dragon Balls. Il se fait battre par Son Goku et tuer par Bejîta.",
 			"ki": 4000,
 			"image": "nappa_01.png"
 		},
 		{
-			"id": 18,
+			"id": 20,
 			"name": "Son Goku",
 			"subtitle": "Lors du combat contre les Saiyajins",
+			"description": "Sous l'enseignement de maître Kaïo, Son Goku développa son potentiel de combat. C'est à ce moment qu'il apprit la technique du Kaïoken et du Genkidama.",
 			"ki": 8000,
 			"image": "goku_05.png"
 		},
 		{
-			"id": 19,
+			"id": 21,
 			"name": "Krilin",
 			"subtitle": "Lors du combat contre le commando Ginue",
+			"description": "Après s'être fait libérer son potentiel par le Grand Sage, Krilin se retrouve face au commando Ginue. Il est rapidement maitrisé par Reecom.",
 			"ki": 13000,
 			"image": "krilin_03.png"
 		},
 		{
-			"id": 20,
+			"id": 22,
 			"name": "Son Gohan",
 			"subtitle": "Lors du combat contre le commando Ginue",
+			"description": "Après s'être fait libérer son potentiel par le Grand Sage, Gohan se retrouve face au commando Ginue. Il est rapidement vaincu par Reecom.",
 			"ki": 14000,
-			"image": "gohan_02.png"
-		},
-		{
-			"id": 21,
-			"name": "Son Goku",
-			"subtitle": "Lors du combat contre les Saiyajins - Nibaï Kaioken",
-			"ki": 16000,
-			"image": "goku_06.png"
-		},
-		{
-			"id": 22,
-			"name": "Bejîta",
-			"subtitle": "Lors de son arrivée sur Terre",
-			"ki": 18000,
-			"image": "bejita_01.png"
+			"image": "gohan_03.png"
 		},
 		{
 			"id": 23,
 			"name": "Son Goku",
-			"subtitle": "Lors du combat contre les Saiyajins - Sambaï Kaioken",
-			"ki": 24000,
-			"image": "goku_07.png"
+			"subtitle": "Lors du combat contre les Saiyajins - Nibaï Kaïoken",
+			"description": "En pratiquant le Kaïoken, Goku peut décupler sa puissance. Le Nibaï Kaïoken multiplie sa puissance par deux. Même le Nibaï Kaïoken n'est pas suffisant face à Bejîta.",
+			"ki": 16000,
+			"image": "goku_06.png"
 		},
 		{
 			"id": 24,
 			"name": "Bejîta",
-			"subtitle": "Lors de son combat contre le commando Ginue",
-			"ki": 30000,
-			"image": "bejita_02.png"
+			"subtitle": "Lors de son arrivée sur Terre",
+			"description": "Bejîta se rend sur Terre avec Nappa afin de récupérer les Dragon Balls. Il se fait battre par Son Goku et ses amis mais parvient à s'enfuir de la Terre, épargné par Son Goku et Krillin.",
+			"ki": 18000,
+			"image": "bejita_01.png"
 		},
 		{
 			"id": 25,
 			"name": "Son Goku",
-			"subtitle": "Lors du combat contre les Saiyajins - Yombaï Kaioken",
-			"ki": 32000,
-			"image": "goku_08.png"
+			"subtitle": "Lors du combat contre les Saiyajins - Sambaï Kaioken",
+			"description": "En pratiquant le Kaïoken, Goku peut décupler sa puissance. Le Sambaï Kaïoken multiplie sa puissance par trois. Même le Sambaï Kaïoken n'a pas suffit à repousser la technique du Canon Garic de Bejîta.",
+			"ki": 24000,
+			"image": "goku_07.png"
 		},
 		{
 			"id": 26,
-			"name": "Nail",
-			"subtitle": "Lors de son combat face à Freezer",
-			"ki": 42000,
-			"image": "nail_01.png"
+			"name": "Bejîta",
+			"subtitle": "Lors de son combat contre le commando Ginue",
+			"description": "Frolant la mort a plusieurs reprises, les cellules Saiyajins de Bejîta le rendirent plus fort. Il réussit ainsi à vaincre Kiwi, Dodoria et Zabon",
+			"ki": 30000,
+			"image": "bejita_02.png"
 		},
 		{
 			"id": 27,
 			"name": "Son Goku",
+			"subtitle": "Lors du combat contre les Saiyajins - Yombaï Kaioken",
+			"description": "En pratiquant le Kaïoken, Goku peut décupler sa puissance. Le Yombaï Kaïoken multiplie sa puissance par quatre. Il utilise cette technique pour repousser la Canon Garic de Bejîta.",
+			"ki": 32000,
+			"image": "goku_08.png"
+		},
+		{
+			"id": 28,
+			"name": "Nail",
+			"subtitle": "Lors de son combat face à Freezer",
+			"description": "Nail a une puissance hors du commun pour un Namek. C'est pourquoi il est chargé de protéger le Grand Sage.",
+			"ki": 42000,
+			"image": "nail_01.png"
+		},
+		{
+			"id": 29,
+			"name": "Son Goku",
 			"subtitle": "Lors de son arrivée sur Namek",
+			"description": "En s'entraînant sous une gravité 100 fois supérieure à celle de la Terre, il parvint à surpasser les limites Saiyajins. Il fut alors capable de décupler le Kaïoken.",
 			"ki": 90000,
 			"image": "goku_09.png"
 		},
 		{
-			"id": 28,
+			"id": 30,
 			"name": "Freezer",
 			"subtitle": "Sur Namek",
+			"description": "Sous sa forme de base, Freezer possède déjà une puissance démentielle. Il n'a ainsi aucun mal à se débarasser de Nail.",
 			"ki": 530000,
 			"image": "freezer_01.png"
 		},
 		{
-			"id": 29,
+			"id": 31,
 			"name": "Freezer",
 			"subtitle": "Sur Namek - 1ère transformation",
+			"description": "La 1ère transformation de Freezer lui permet d'augmenter son ki. Il combat Piccolo sous cette forme",
 			"ki": 1000000,
 			"image": "freezer_02.png"
 		},
 		{
-			"id": 30,
+			"id": 32,
 			"name": "Son Goku",
 			"subtitle": "Lors de son combat contre Freezer",
+			"description": "Après avoir été soigné par la machine régénératrice, Son Goku recouvra une toute nouvelle puissance qu'il était loin d'imaginer. Il prit alors conscience de son appartenance Saiyajin. Déterminé, il fit face à Freezer.",
 			"ki": 3000000,
 			"image": "goku_10.png"
 		},
 		{
-			"id": 31,
+			"id": 33,
 			"name": "Freezer",
 			"subtitle": "Sur Namek - 3ème transformation à 50%",
+			"description": "Avec sa dernière transformation, Freezer n'a aucun mal à contenir le Kamehameha de Son Goku ou encore son Genkidama, alors qu'il n'utilise que la moitié de sa puissance !",
 			"ki": 60000000,
 			"image": "freezer_03.png"
+		},
+		{
+			"id": 34,
+			"name": "Freezer",
+			"subtitle": "Sur Namek - A 100% de sa force",
+			"description": "Il s'agit de Freezer dans son ultime transformation. Il dut user de sa pleine puissance quand Son Goku apparut en Super Saiyajin.",
+			"ki": 120000000,
+			"image": "freezer_04.png"
+		},
+		{
+			"id": 35,
+			"name": "Son Goku",
+			"subtitle": "Le Super Saiyajin légendaire",
+			"description": "Son Goku se transforma finalement en Super Saiyajin, le guerrier légendaire. Son potentiel de combat fut alors 50 fois plus élevé que son état normal. En utilisant toute cette puissance, il parvint à vaincre Freezer.",
+			"ki": 150000000,
+			"image": "goku_11.png"
 		}
 	]
 }
