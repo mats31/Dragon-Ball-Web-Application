@@ -8,4 +8,6 @@ Demo available [here](http://62.210.36.104/db-ki/).
 #### Credits :
 Thanks to [Paul Lewis](https://github.com/paullewis) for his [script](https://github.com/paullewis/Photo-Particles) which helped me to think about this application.
 
+Thanks to [Nicolas Duval](https://dribbble.com/nicolaseek) who helped me for the conception
+
 Enjoy !
