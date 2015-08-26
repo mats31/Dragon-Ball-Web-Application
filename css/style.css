@@ -15,8 +15,11 @@ body{
 
 .controls{
 	bottom: 70px;
-	left: 65%;
+	left: 60%;
+	padding: 15px;
 	position: absolute;
+	text-align: center;
+	width: 30%;
 	z-index: 1;
 }
 
@@ -31,7 +34,7 @@ body{
 	line-height: 0.5;
 	padding: 20px 0;
 	text-align: center;
-	width: 100px;
+	width: 25%;
 }
 
 .controls .button-nav:first-child{
@@ -56,9 +59,9 @@ body{
 }
 
 .panel h2{
+	font-size: 40px;
 	font-weight: bold;
 }
-
-.panel .subtitle{
-	font-size: 12px;
-}
+.panel #subtitle{font-size: 14px;}
+.panel #description{font-size: 18px;}
+.panel #ki{font-size: 30px;}
