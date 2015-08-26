@@ -26,15 +26,28 @@ body{
 .controls .button-nav{
 	text-decoration: none;
     font-size: 15px;
+    font-weight: bold;
     outline: none;
-    color: brown;
-	background-color: yellow;
+    color: white;
+	background-color: #fcd04b;
+	box-shadow: 0 6px #f29e0d;
 	border-radius: 15px;
 	display: inline-block;
 	line-height: 0.5;
 	padding: 20px 0;
+	position: relative;
 	text-align: center;
 	width: 25%;
+}
+
+.controls .button-nav:hover {
+	box-shadow: 0 4px #f29e0d;
+	top: 2px;
+}
+
+.controls .button-nav:active {
+	box-shadow: 0 0 #f29e0d;
+	top: 6px;
 }
 
 .controls .button-nav:first-child{

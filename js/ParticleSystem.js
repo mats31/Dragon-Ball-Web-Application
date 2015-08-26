@@ -46,7 +46,7 @@ var ParticleSystem = function(){
 	this.name = document.getElementById('name');
 	this.subtitle = document.getElementById('subtitle');
 	this.description = document.getElementById('description');
-	this.ki = document.getElementById('ki');
+	this.ki = document.getElementById('number');
 	this.disableChange = true;
 };
 
